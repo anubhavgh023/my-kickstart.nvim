@@ -243,6 +243,7 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
+
   --'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   {
     'christoomey/vim-tmux-navigator',
@@ -259,6 +260,15 @@ require('lazy').setup({
       { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
       { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
       { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
+    },
+
+    -- autopairs
+    {
+      'windwp/nvim-autopairs',
+      event = 'InsertEnter',
+      config = true,
+      -- use opts = {} for passing setup options
+      -- this is equivalent to setup({}) function
     },
   },
 
