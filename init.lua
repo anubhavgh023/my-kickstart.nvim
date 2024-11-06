@@ -162,6 +162,15 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- Autosave
+vim.cmd [[
+  augroup AutoSave
+    autocmd!
+    autocmd CursorHold,CursorHoldI * silent! write
+  augroup END
+]]
+vim.o.updatetime = 500
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
