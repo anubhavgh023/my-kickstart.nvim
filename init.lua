@@ -245,7 +245,7 @@ require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
 
   --'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-  {
+  { -- vim tmux navigator
     'christoomey/vim-tmux-navigator',
     cmd = {
       'TmuxNavigateLeft',
@@ -262,13 +262,44 @@ require('lazy').setup({
       { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
     },
 
-    -- autopairs
-    {
+    { -- autopairs
       'windwp/nvim-autopairs',
       event = 'InsertEnter',
       config = true,
       -- use opts = {} for passing setup options
       -- this is equivalent to setup({}) function
+    },
+
+    { -- neo-tree
+      'nvim-neo-tree/neo-tree.nvim',
+      branch = 'v3.x',
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+        'nvim-tree/nvim-web-devicons',
+        'muniftanjim/nui.nvim',
+      },
+      config = function()
+        vim.keymap.set('n', '<c-n>', ':Neotree toggle filesystem reveal right<cr>', {})
+        vim.keymap.set('n', '<leader>bf', ':Neotree buffers reveal float<cr>', {})
+      end,
+    },
+
+    { -- dadbod db ui
+      'kristijanhusak/vim-dadbod-ui',
+      dependencies = {
+        { 'tpope/vim-dadbod', lazy = true },
+        { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' }, lazy = true }, -- Optional
+      },
+      cmd = {
+        'DBUI',
+        'DBUIToggle',
+        'DBUIAddConnection',
+        'DBUIFindBuffer',
+      },
+      init = function()
+        -- Your DBUI configuration
+        vim.g.db_ui_use_nerd_fonts = 1
+      end,
     },
   },
 
